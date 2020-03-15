@@ -2,27 +2,23 @@ package com.donesi.mi.orderservice.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
 import java.util.List;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @AllArgsConstructor
 public class Order {
 
-    @Getter
-    @Setter
     private int id;
 
-    @Getter
-    @Setter
     private Date orderDate;
 
-    @Getter
-    @Setter
     private List<Integer> items;
 
-    @Getter
-    @Setter
     private Payment payment;
 }

@@ -4,6 +4,7 @@ import com.donesi.mi.userservice.models.Order;
 import com.donesi.mi.userservice.models.User;
 import com.donesi.mi.userservice.repositories.UserRepository;
 import com.donesi.mi.userservice.services.OrderInfo;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.netflix.hystrix.HystrixCommands;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,7 +38,7 @@ public class UserResource {
     }
 
     @RequestMapping("/{userId}/orders")
-    public Flux<Order> getOrdersOfUser(@PathVariable("userId") int userId) {
+    public Flux<Order> getOrdersOfUser(@PathVariable("userId") int userId) throws JsonProcessingException {
 
         // Get User with id
         User user = userRepository.getUserById(userId);
