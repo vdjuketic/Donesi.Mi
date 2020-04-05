@@ -12,7 +12,7 @@ import lombok.Setter;
 public class Payment {
     int id;
 
-    int amount;
+    Double amount;
 
     Currency currency;
 }
