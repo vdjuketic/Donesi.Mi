@@ -2,26 +2,22 @@ package com.donesi.mi.orderservice.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class Item {
 
-    @Getter
-    @Setter
-    private int id;
-    @Getter
-    @Setter
-    private String store;
-    @Getter
-    @Setter
-    private String name;
-    @Getter
-    @Setter
-    private String description;
+    int id;
 
-    public Item() {
-    }
+    String store;
+
+    String name;
+
+    String description;
 
     public Item(String name) {
         this.name = name;

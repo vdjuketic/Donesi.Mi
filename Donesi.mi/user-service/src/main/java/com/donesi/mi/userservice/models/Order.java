@@ -19,5 +19,5 @@ public class Order {
 
     List<Integer> items;
 
-    Payment payment;
+    int payment;
 }

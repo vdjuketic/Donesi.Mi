@@ -6,6 +6,7 @@ import com.donesi.mi.orderservice.models.Payment;
 import com.donesi.mi.orderservice.repositories.OrderRepository;
 import com.donesi.mi.orderservice.services.ItemInfo;
 import com.donesi.mi.orderservice.services.PaymentInfo;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.netflix.hystrix.HystrixCommands;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -45,7 +46,7 @@ public class OrderResource {
     }
 
     @RequestMapping("/{orderId}/items")
-    public Flux<Item> getItemsOfOrder(@PathVariable("orderId") int orderId) {
+    public Flux<Item> getItemsOfOrder(@PathVariable("orderId") int orderId) throws JsonProcessingException {
 
         // Get order with id
         Order order = orderRepository.getOrderById(orderId);

@@ -48,6 +48,6 @@ public class OrderInfo {
     }
 
     public Flux<Order> getOrdersOfUserFallback() {
-        return Flux.just(new Order(0, new Date(), Collections.emptyList(), new Payment(0, 0, Currency.EUR)));
+        return Flux.just(new Order(0, new Date(), Collections.emptyList(), new Payment(0, 0.0, Currency.EUR)));
     }
 }

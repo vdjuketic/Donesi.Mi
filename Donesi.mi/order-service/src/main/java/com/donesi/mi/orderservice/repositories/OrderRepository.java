@@ -1,25 +1,38 @@
 package com.donesi.mi.orderservice.repositories;
 
-import com.donesi.mi.orderservice.models.Currency;
 import com.donesi.mi.orderservice.models.Order;
-import com.donesi.mi.orderservice.models.Payment;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 import org.springframework.stereotype.Repository;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 @Repository
 public class OrderRepository {
 
-    public Order getOrderById(int id) {
-        return new Order(1, new Date(), Arrays.asList(1, 2), new Payment(0, 100, Currency.EUR));
+    Configuration conf = new Configuration().configure().addAnnotatedClass(Order.class);
+
+    public Order getOrderById(int orderId) {
+        SessionFactory sessionFactory = conf.buildSessionFactory();
+        Session session = sessionFactory.openSession();
+
+        session.beginTransaction();
+
+        Order order = session.get(Order.class, orderId);
+        session.getTransaction().commit();
+        return order;
     }
 
     public List<Order> getOrderList() {
-        return Arrays.asList(
-                new Order(1, new Date(), Collections.singletonList(1), new Payment(0, 100, Currency.EUR)),
-                new Order(2, new Date(), Collections.singletonList(2), new Payment(1, 300, Currency.EUR)));
+        SessionFactory sessionFactory = conf.buildSessionFactory();
+        Session session = sessionFactory.openSession();
+
+        session.beginTransaction();
+
+        List<Order> orders = session.createQuery("from orders", Order.class).list();
+        session.getTransaction().commit();
+
+        return orders;
     }
 }

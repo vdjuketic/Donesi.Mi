@@ -4,21 +4,32 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.DynamicUpdate;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.Date;
-import java.util.List;
 
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
+@DynamicUpdate
+@Entity(name = "orders")
 public class Order {
 
-    private int id;
+  @Id
+  @GeneratedValue
+  int id;
 
-    private Date orderDate;
+  @Column(name = "order_date")
+  Date orderDate;
 
-    private List<Integer> items;
+  @Column
+  String items;
 
-    private Payment payment;
+  @Column
+  int payment;
 }
