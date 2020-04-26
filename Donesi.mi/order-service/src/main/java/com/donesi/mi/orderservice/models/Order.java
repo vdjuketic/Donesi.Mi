@@ -2,27 +2,34 @@ package com.donesi.mi.orderservice.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.DynamicUpdate;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.Date;
-import java.util.List;
 
+@NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
+@DynamicUpdate
+@Entity(name = "orders")
 public class Order {
 
-    @Getter
-    @Setter
-    private int id;
+  @Id
+  @GeneratedValue
+  int id;
 
-    @Getter
-    @Setter
-    private Date orderDate;
+  @Column(name = "order_date")
+  Date orderDate;
 
-    @Getter
-    @Setter
-    private List<Integer> items;
+  @Column
+  String items;
 
-    @Getter
-    @Setter
-    private Payment payment;
+  @Column
+  int payment;
 }

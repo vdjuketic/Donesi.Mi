@@ -5,19 +5,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
-import java.util.List;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class Order {
+public class Payment {
     int id;
 
-    Date orderDate;
+    Double amount;
 
-    List<Integer> items;
-
-    int payment;
+    Currency currency;
 }

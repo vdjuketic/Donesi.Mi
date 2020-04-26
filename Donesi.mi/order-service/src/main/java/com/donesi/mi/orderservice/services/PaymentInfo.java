@@ -28,6 +28,6 @@ public class PaymentInfo {
     }
 
     public Mono<Payment> getPaymentOfOrderFallback() {
-        return Mono.just(new Payment(0, 0, Currency.EUR));
+        return Mono.just(new Payment(0, 0.0, Currency.EUR));
     }
 }
