@@ -12,7 +12,7 @@ import java.util.Date;
 @Getter
 @Setter
 public class Order {
-    int id;
+  int id;
 
     Date orderDate;
 

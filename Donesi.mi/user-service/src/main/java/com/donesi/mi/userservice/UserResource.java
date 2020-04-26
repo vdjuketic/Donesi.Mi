@@ -18,35 +18,36 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserResource {
 
-    private UserRepository userRepository;
-    private OrderInfo orderInfo;
+  private UserRepository userRepository;
+  private OrderInfo orderInfo;
 
-    @Autowired
-    public UserResource(UserRepository userRepository, OrderInfo orderInfo) {
-        this.userRepository = userRepository;
-        this.orderInfo = orderInfo;
-    }
+  @Autowired
+  public UserResource(UserRepository userRepository, OrderInfo orderInfo) {
+    this.userRepository = userRepository;
+    this.orderInfo = orderInfo;
+  }
 
-    @RequestMapping("/list")
-    public List<User> getListUsers() {
-        return userRepository.getListUsers();
-    }
+  @RequestMapping("/list")
+  public List<User> getListUsers() {
+    return userRepository.getListUsers();
+  }
 
-    @RequestMapping("/{userId}")
-    public User getUserById(@PathVariable("userId") int userId) {
-        return userRepository.getUserById(userId);
-    }
+  @RequestMapping("/{userId}")
+  public User getUserById(@PathVariable("userId") int userId) {
+    return userRepository.getUserById(userId);
+  }
 
-    @RequestMapping("/{userId}/orders")
-    public Flux<Order> getOrdersOfUser(@PathVariable("userId") int userId) throws JsonProcessingException {
+  @RequestMapping("/{userId}/orders")
+  public Flux<Order> getOrdersOfUser(@PathVariable("userId") int userId)
+          throws JsonProcessingException {
 
-        // Get User with id
-        User user = userRepository.getUserById(userId);
+    // Get User with id
+    User user = userRepository.getUserById(userId);
 
-        // Get every order of user
-        return HystrixCommands.from(orderInfo.getOrdersOfUserCall(user))
-                .fallback(orderInfo.getOrdersOfUserFallback())
-                .commandName("getOrdersOfUserCall")
-                .toFlux();
-    }
+    // Get every order of user
+    return HystrixCommands.from(orderInfo.getOrdersOfUserCall(user))
+            .fallback(orderInfo.getOrdersOfUserFallback())
+            .commandName("getOrdersOfUserCall")
+            .toFlux();
+  }
 }

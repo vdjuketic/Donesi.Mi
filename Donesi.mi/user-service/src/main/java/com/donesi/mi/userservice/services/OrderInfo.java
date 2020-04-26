@@ -18,33 +18,33 @@ import java.util.List;
 @Service
 public class OrderInfo {
 
-    private WebClient.Builder webClientBuilder;
-    private ObjectMapper objectMapper;
+  private WebClient.Builder webClientBuilder;
+  private ObjectMapper objectMapper;
 
-    @Autowired
-    public OrderInfo(WebClient.Builder webClientBuilder, ObjectMapper objectMapper) {
-        this.webClientBuilder = webClientBuilder;
-        this.objectMapper = objectMapper;
-        objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
-    }
+  @Autowired
+  public OrderInfo(WebClient.Builder webClientBuilder, ObjectMapper objectMapper) {
+    this.webClientBuilder = webClientBuilder;
+    this.objectMapper = objectMapper;
+    objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
+  }
 
-    public Flux<Order> getOrdersOfUserCall(User user) throws JsonProcessingException {
+  public Flux<Order> getOrdersOfUserCall(User user) throws JsonProcessingException {
 
-        List<Integer> orderIds = objectMapper.readValue(user.getOrders(), List.class);
+    List<Integer> orderIds = objectMapper.readValue(user.getOrders(), List.class);
 
-        return Flux.fromIterable(orderIds)
-                .flatMap(
-                        orderId ->
-                                webClientBuilder
-                                        .build()
-                                        .get()
-                                        .uri("http://order-service/order/{id}", orderId)
-                                        .retrieve()
-                                        .bodyToMono(Order.class))
-                .subscribeOn(Schedulers.parallel());
-    }
+    return Flux.fromIterable(orderIds)
+            .flatMap(
+                    orderId ->
+                            webClientBuilder
+                                    .build()
+                                    .get()
+                                    .uri("http://order-service/order/{id}", orderId)
+                                    .retrieve()
+                                    .bodyToMono(Order.class))
+            .subscribeOn(Schedulers.parallel());
+  }
 
-    public Flux<Order> getOrdersOfUserFallback() {
-        return Flux.just(new Order(0, new Date(), "Order not found", 0));
-    }
+  public Flux<Order> getOrdersOfUserFallback() {
+    return Flux.just(new Order(0, new Date(), "Order not found", 0));
+  }
 }

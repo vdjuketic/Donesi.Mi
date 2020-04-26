@@ -11,29 +11,29 @@ import java.util.List;
 @Repository
 public class UserRepository {
 
-    Configuration conf = new Configuration().configure().addAnnotatedClass(User.class);
+  Configuration conf = new Configuration().configure().addAnnotatedClass(User.class);
 
-    public List<User> getListUsers() {
-        SessionFactory sessionFactory = conf.buildSessionFactory();
-        Session session = sessionFactory.openSession();
+  public List<User> getListUsers() {
+    SessionFactory sessionFactory = conf.buildSessionFactory();
+    Session session = sessionFactory.openSession();
 
-        session.beginTransaction();
+    session.beginTransaction();
 
-        List<User> users = session.createQuery("from users", User.class).list();
-        session.getTransaction().commit();
+    List<User> users = session.createQuery("from users", User.class).list();
+    session.getTransaction().commit();
 
-        return users;
-    }
+    return users;
+  }
 
-    public User getUserById(int userId) {
-        SessionFactory sessionFactory = conf.buildSessionFactory();
-        Session session = sessionFactory.openSession();
+  public User getUserById(int userId) {
+    SessionFactory sessionFactory = conf.buildSessionFactory();
+    Session session = sessionFactory.openSession();
 
-        session.beginTransaction();
+    session.beginTransaction();
 
-        User user = session.get(User.class, userId);
-        session.getTransaction().commit();
+    User user = session.get(User.class, userId);
+    session.getTransaction().commit();
 
-        return user;
-    }
+    return user;
+  }
 }

@@ -19,9 +19,9 @@ import javax.persistence.Id;
 @Entity(name = "items")
 public class Item {
 
-    @Id
-    @GeneratedValue
-    int id;
+  @Id
+  @GeneratedValue
+  int id;
 
     @Column
     String store;
