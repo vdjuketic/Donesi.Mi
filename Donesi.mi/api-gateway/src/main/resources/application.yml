@@ -1,0 +1,14 @@
+zuul:
+  routes:
+    users:
+      path: /user/**
+      serviceId: user-service
+    payment:
+      path: /payment/**
+      serviceId: payment-service
+    order:
+      path: /order/**
+      serviceId: order-service
+    item:
+      path: /item/**
+      serviceId: item-service
