@@ -1,8 +1,6 @@
 package com.donesi.mi.userservice.services;
 
-import com.donesi.mi.userservice.models.Currency;
 import com.donesi.mi.userservice.models.Order;
-import com.donesi.mi.userservice.models.Payment;
 import com.donesi.mi.userservice.models.User;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
@@ -48,6 +46,6 @@ public class OrderInfo {
     }
 
     public Flux<Order> getOrdersOfUserFallback() {
-        return Flux.just(new Order(0, new Date(), Collections.emptyList(), new Payment(0, 0.0, Currency.EUR)));
+        return Flux.just(new Order(0, new Date(), Collections.emptyList(), 40));
     }
 }

@@ -2,23 +2,33 @@ package com.donesi.mi.itemservice.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.DynamicUpdate;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
+@DynamicUpdate
+@Entity(name = "items")
 public class Item {
-    @Getter
-    @Setter
-    private int id;
 
-    @Getter
-    @Setter
-    private String store;
+    @Id
+    @GeneratedValue
+    int id;
 
-    @Getter
-    @Setter
-    private String name;
+    @Column
+    String store;
 
-    @Getter
-    @Setter
-    private String description;
+    @Column
+    String name;
+
+    @Column
+    String description;
 }
