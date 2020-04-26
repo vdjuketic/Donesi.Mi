@@ -27,9 +27,7 @@ public class OrderResource {
 
     @Autowired
     public OrderResource(
-            OrderRepository orderRepository,
-            PaymentInfo paymentInfo,
-            ItemInfo itemInfo) {
+            OrderRepository orderRepository, PaymentInfo paymentInfo, ItemInfo itemInfo) {
         this.orderRepository = orderRepository;
         this.paymentInfo = paymentInfo;
         this.itemInfo = itemInfo;
@@ -46,7 +44,8 @@ public class OrderResource {
     }
 
     @RequestMapping("/{orderId}/items")
-    public Flux<Item> getItemsOfOrder(@PathVariable("orderId") int orderId) throws JsonProcessingException {
+    public Flux<Item> getItemsOfOrder(@PathVariable("orderId") int orderId)
+            throws JsonProcessingException {
 
         // Get order with id
         Order order = orderRepository.getOrderById(orderId);

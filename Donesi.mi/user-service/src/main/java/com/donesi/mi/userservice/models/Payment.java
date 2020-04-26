@@ -10,9 +10,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Payment {
-    int id;
+  int id;
 
-    Double amount;
+  Double amount;
 
-    Currency currency;
+  Currency currency;
 }

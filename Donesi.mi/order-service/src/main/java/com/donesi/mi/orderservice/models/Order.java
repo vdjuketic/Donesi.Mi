@@ -27,9 +27,9 @@ public class Order {
   @Column(name = "order_date")
   Date orderDate;
 
-  @Column
-  String items;
+    @Column
+    String items;
 
-  @Column
-  int payment;
+    @Column
+    int payment;
 }

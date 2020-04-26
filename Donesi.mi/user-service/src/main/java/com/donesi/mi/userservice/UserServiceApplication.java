@@ -22,5 +22,4 @@ public class UserServiceApplication {
     public WebClient.Builder getWebClientBuilder() {
         return WebClient.builder();
     }
-
 }

@@ -27,4 +27,3 @@ public class Payment {
     @Enumerated(EnumType.STRING)
     Currency currency;
 }
-
