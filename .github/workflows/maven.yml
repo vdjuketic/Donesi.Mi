@@ -21,7 +21,7 @@ jobs:
       with:
         java-version: 1.8
     - name: Enter api-gateway
-      run: cd api-document 
+      run: cd api-gateway 
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: Check code formatting
