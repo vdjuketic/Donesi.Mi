@@ -17,9 +17,7 @@ import javax.persistence.Id;
 @Entity(name = "users")
 public class User {
 
-  @Id
-  @GeneratedValue
-  private int id;
+  @Id @GeneratedValue private int id;
 
   @Column(name = "first_name")
   private String firstName;
@@ -27,6 +25,5 @@ public class User {
   @Column(name = "last_name")
   private String lastName;
 
-  @Column
-  private String orders;
+  @Column private String orders;
 }

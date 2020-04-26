@@ -39,15 +39,15 @@ public class UserResource {
 
   @RequestMapping("/{userId}/orders")
   public Flux<Order> getOrdersOfUser(@PathVariable("userId") int userId)
-          throws JsonProcessingException {
+      throws JsonProcessingException {
 
     // Get User with id
     User user = userRepository.getUserById(userId);
 
     // Get every order of user
     return HystrixCommands.from(orderInfo.getOrdersOfUserCall(user))
-            .fallback(orderInfo.getOrdersOfUserFallback())
-            .commandName("getOrdersOfUserCall")
-            .toFlux();
+        .fallback(orderInfo.getOrdersOfUserFallback())
+        .commandName("getOrdersOfUserCall")
+        .toFlux();
   }
 }

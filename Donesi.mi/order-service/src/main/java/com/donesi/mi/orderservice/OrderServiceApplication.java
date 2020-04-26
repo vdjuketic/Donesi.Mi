@@ -15,13 +15,13 @@ import org.springframework.web.reactive.function.client.WebClient;
 @EnableHystrixDashboard
 public class OrderServiceApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(OrderServiceApplication.class, args);
-    }
+  public static void main(String[] args) {
+    SpringApplication.run(OrderServiceApplication.class, args);
+  }
 
-    @Bean
-    @LoadBalanced
-    public WebClient.Builder getWebClientBuilder() {
-        return WebClient.builder();
-    }
+  @Bean
+  @LoadBalanced
+  public WebClient.Builder getWebClientBuilder() {
+    return WebClient.builder();
+  }
 }

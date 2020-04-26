@@ -13,20 +13,20 @@ import java.util.List;
 @RequestMapping("/item")
 public class ItemResource {
 
-    private ItemRepository itemRepository;
+  private ItemRepository itemRepository;
 
-    @Autowired
-    public ItemResource(ItemRepository itemRepository) {
-        this.itemRepository = itemRepository;
-    }
+  @Autowired
+  public ItemResource(ItemRepository itemRepository) {
+    this.itemRepository = itemRepository;
+  }
 
-    @RequestMapping("/list")
-    public List<Item> getItemList() {
-        return itemRepository.getItemList();
-    }
+  @RequestMapping("/list")
+  public List<Item> getItemList() {
+    return itemRepository.getItemList();
+  }
 
-    @RequestMapping("/{itemId}")
-    public Item getItemById(@PathVariable("itemId") int itemId) {
-        return itemRepository.getItemById(itemId);
-    }
+  @RequestMapping("/{itemId}")
+  public Item getItemById(@PathVariable("itemId") int itemId) {
+    return itemRepository.getItemById(itemId);
+  }
 }

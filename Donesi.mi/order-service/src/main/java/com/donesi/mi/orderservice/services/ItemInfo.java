@@ -17,33 +17,33 @@ import java.util.List;
 @Service
 public class ItemInfo {
 
-    private WebClient.Builder webClientBuilder;
-    private ObjectMapper objectMapper;
+  private WebClient.Builder webClientBuilder;
+  private ObjectMapper objectMapper;
 
-    @Autowired
-    public ItemInfo(WebClient.Builder webClientBuilder, ObjectMapper objectMapper) {
-        this.webClientBuilder = webClientBuilder;
-        this.objectMapper = objectMapper;
-        objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
-    }
+  @Autowired
+  public ItemInfo(WebClient.Builder webClientBuilder, ObjectMapper objectMapper) {
+    this.webClientBuilder = webClientBuilder;
+    this.objectMapper = objectMapper;
+    objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
+  }
 
-    public Flux<Item> getItemsFromOrderCall(Order order) throws JsonProcessingException {
+  public Flux<Item> getItemsFromOrderCall(Order order) throws JsonProcessingException {
 
-        List<Integer> itemIDs = objectMapper.readValue(order.getItems(), List.class);
+    List<Integer> itemIDs = objectMapper.readValue(order.getItems(), List.class);
 
-        return Flux.fromIterable(itemIDs)
-                .flatMap(
-                        itemId ->
-                                webClientBuilder
-                                        .build()
-                                        .get()
-                                        .uri("http://item-service/item/{id}", itemId)
-                                        .retrieve()
-                                        .bodyToMono(Item.class))
-                .subscribeOn(Schedulers.parallel());
-    }
+    return Flux.fromIterable(itemIDs)
+        .flatMap(
+            itemId ->
+                webClientBuilder
+                    .build()
+                    .get()
+                    .uri("http://item-service/item/{id}", itemId)
+                    .retrieve()
+                    .bodyToMono(Item.class))
+        .subscribeOn(Schedulers.parallel());
+  }
 
-    public Flux<Item> getItemsFromOrderFallback() {
-        return Flux.just(new Item("Item not found"));
-    }
+  public Flux<Item> getItemsFromOrderFallback() {
+    return Flux.just(new Item("Item not found"));
+  }
 }

@@ -14,9 +14,9 @@ import java.util.Date;
 public class Order {
   int id;
 
-    Date orderDate;
+  Date orderDate;
 
-    String items;
+  String items;
 
-    int payment;
+  int payment;
 }

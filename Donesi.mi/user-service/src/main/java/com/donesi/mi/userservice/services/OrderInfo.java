@@ -33,15 +33,15 @@ public class OrderInfo {
     List<Integer> orderIds = objectMapper.readValue(user.getOrders(), List.class);
 
     return Flux.fromIterable(orderIds)
-            .flatMap(
-                    orderId ->
-                            webClientBuilder
-                                    .build()
-                                    .get()
-                                    .uri("http://order-service/order/{id}", orderId)
-                                    .retrieve()
-                                    .bodyToMono(Order.class))
-            .subscribeOn(Schedulers.parallel());
+        .flatMap(
+            orderId ->
+                webClientBuilder
+                    .build()
+                    .get()
+                    .uri("http://order-service/order/{id}", orderId)
+                    .retrieve()
+                    .bodyToMono(Order.class))
+        .subscribeOn(Schedulers.parallel());
   }
 
   public Flux<Order> getOrdersOfUserFallback() {

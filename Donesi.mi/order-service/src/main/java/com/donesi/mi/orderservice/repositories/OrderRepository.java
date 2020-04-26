@@ -11,28 +11,28 @@ import java.util.List;
 @Repository
 public class OrderRepository {
 
-    Configuration conf = new Configuration().configure().addAnnotatedClass(Order.class);
+  Configuration conf = new Configuration().configure().addAnnotatedClass(Order.class);
 
-    public Order getOrderById(int orderId) {
-        SessionFactory sessionFactory = conf.buildSessionFactory();
-        Session session = sessionFactory.openSession();
+  public Order getOrderById(int orderId) {
+    SessionFactory sessionFactory = conf.buildSessionFactory();
+    Session session = sessionFactory.openSession();
 
-        session.beginTransaction();
+    session.beginTransaction();
 
-        Order order = session.get(Order.class, orderId);
-        session.getTransaction().commit();
-        return order;
-    }
+    Order order = session.get(Order.class, orderId);
+    session.getTransaction().commit();
+    return order;
+  }
 
-    public List<Order> getOrderList() {
-        SessionFactory sessionFactory = conf.buildSessionFactory();
-        Session session = sessionFactory.openSession();
+  public List<Order> getOrderList() {
+    SessionFactory sessionFactory = conf.buildSessionFactory();
+    Session session = sessionFactory.openSession();
 
-        session.beginTransaction();
+    session.beginTransaction();
 
-        List<Order> orders = session.createQuery("from orders", Order.class).list();
-        session.getTransaction().commit();
+    List<Order> orders = session.createQuery("from orders", Order.class).list();
+    session.getTransaction().commit();
 
-        return orders;
-    }
+    return orders;
+  }
 }

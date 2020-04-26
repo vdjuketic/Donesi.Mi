@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/payment")
 public class PaymentResource {
 
-    private PaymentRepository paymentRepository;
+  private PaymentRepository paymentRepository;
 
-    @Autowired
-    public PaymentResource(PaymentRepository paymentRepository) {
-        this.paymentRepository = paymentRepository;
-    }
+  @Autowired
+  public PaymentResource(PaymentRepository paymentRepository) {
+    this.paymentRepository = paymentRepository;
+  }
 
-    @RequestMapping("/{paymentId}")
-    public Payment getPaymentById(@PathVariable("paymentId") int paymentId) {
-        return paymentRepository.getPaymentById(paymentId);
-    }
+  @RequestMapping("/{paymentId}")
+  public Payment getPaymentById(@PathVariable("paymentId") int paymentId) {
+    return paymentRepository.getPaymentById(paymentId);
+  }
 }

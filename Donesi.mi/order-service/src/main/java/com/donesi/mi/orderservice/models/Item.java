@@ -11,15 +11,15 @@ import lombok.Setter;
 @Setter
 public class Item {
 
-    int id;
+  int id;
 
-    String store;
+  String store;
 
-    String name;
+  String name;
 
-    String description;
+  String description;
 
-    public Item(String name) {
-        this.name = name;
-    }
+  public Item(String name) {
+    this.name = name;
+  }
 }

@@ -13,13 +13,13 @@ import org.springframework.web.reactive.function.client.WebClient;
 @EnableCircuitBreaker
 public class UserServiceApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(UserServiceApplication.class, args);
-    }
+  public static void main(String[] args) {
+    SpringApplication.run(UserServiceApplication.class, args);
+  }
 
-    @Bean
-    @LoadBalanced
-    public WebClient.Builder getWebClientBuilder() {
-        return WebClient.builder();
-    }
+  @Bean
+  @LoadBalanced
+  public WebClient.Builder getWebClientBuilder() {
+    return WebClient.builder();
+  }
 }

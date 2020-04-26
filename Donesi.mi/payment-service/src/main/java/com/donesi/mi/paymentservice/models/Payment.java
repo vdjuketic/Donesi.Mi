@@ -16,14 +16,11 @@ import javax.persistence.*;
 @Entity(name = "payment")
 public class Payment {
 
-    @Id
-    @GeneratedValue
-    int id;
+  @Id @GeneratedValue int id;
 
-    @Column
-    Double amount;
+  @Column Double amount;
 
-    @Column
-    @Enumerated(EnumType.STRING)
-    Currency currency;
+  @Column
+  @Enumerated(EnumType.STRING)
+  Currency currency;
 }

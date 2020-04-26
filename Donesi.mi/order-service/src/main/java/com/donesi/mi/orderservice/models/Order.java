@@ -20,16 +20,12 @@ import java.util.Date;
 @Entity(name = "orders")
 public class Order {
 
-  @Id
-  @GeneratedValue
-  int id;
+  @Id @GeneratedValue int id;
 
   @Column(name = "order_date")
   Date orderDate;
 
-    @Column
-    String items;
+  @Column String items;
 
-    @Column
-    int payment;
+  @Column int payment;
 }
