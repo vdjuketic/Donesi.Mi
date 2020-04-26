@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,7 +16,7 @@ public class Order {
 
     Date orderDate;
 
-    List<Integer> items;
+    String items;
 
     int payment;
 }

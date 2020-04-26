@@ -12,7 +12,6 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.scheduler.Schedulers;
 
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -46,6 +45,6 @@ public class OrderInfo {
     }
 
     public Flux<Order> getOrdersOfUserFallback() {
-        return Flux.just(new Order(0, new Date(), Collections.emptyList(), 40));
+        return Flux.just(new Order(0, new Date(), "Order not found", 0));
     }
 }
